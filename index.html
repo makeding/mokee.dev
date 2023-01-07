@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MoKee ROM (2012-2023)</title>
+  <!-- <meta name="description" content="R.I.P. MoKee ROM"> -->
+  <meta property="og:image" content="./assets/say_bye_to_mokee.png" />
+  <meta content="./assets/say_bye_to_mokee.png" property="og:image:url" />
+  <meta content="./assets/say_bye_to_mokee.png" property="og:image:secure_url" />
+  <meta content="image/png" property="og:image:type" />
+  <meta content="640" property="og:image:width" />
+  <meta content="573" property="og:image:height" />
+  <meta content="R.I.P. MoKee ROM" property="og:image:alt" />
+  <link rel="preload" href="./assets/Pig_idle1.ogg" as="audio" />
+  <link rel="preload" href="./assets/Pig_death.ogg" as="audio" />
+  <style>
+    html,
+    body {
+      margin: 0;
+      cursor: pointer;
+      height: 100vh;
+    }
+
+    * {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    main {
+      text-align: center;
+      padding-top: 2rem;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <figure>
+      <a href="https://lineageos.org/" target="_blank">
+        <img alt="Say goodbye to MoKee" src="./assets/say_bye_to_mokee.png">
+      </a>
+      <figcaption>
+        <p>MoKee ROM 2012-2023</p>
+      </figcaption>
+    </figure>
+  </main>
+  <audio id="pig-idle" src="./assets/Pig_idle1.ogg" preload="auto"></audio>
+  <audio id="pig-death" src="./assets/Pig_death.ogg" preload="auto"></audio>
+  <script>
+    let clickCount = 0
+    // let eggCount = 0
+    let eggProbability = 8
+    function panikPig(options) {
+      // mememan: Majic
+      let majicNumber = Math.floor(Math.random() * 100) + 1
+      console.log(majicNumber, clickCount, eggProbability)
+      document.querySelector('#pig-idle').currentTime = 0
+      document.querySelector('#pig-death').currentTime = 0
+      if (options.target.nodeName === 'IMG' || clickCount != 0 && majicNumber < eggProbability) {
+        document.querySelector('#pig-idle').pause()
+        document.querySelector('#pig-death').play()
+        eggProbability = 8
+        clickCount = 0
+        // eggCount = 0
+      } else if (Math.floor(Math.random() * 100) < 90) {
+        document.querySelector('#pig-death').pause()
+        document.querySelector('#pig-idle').play()
+        eggProbability += 4
+      }
+      clickCount++
+    }
+    document.addEventListener('click', panikPig)
+  </script>
+  <!--
+【魔趣龙猪寻访】说明
+◆在【魔趣龙猪寻访】中，如果没有寻访到稀有龙猪，则下一次获得稀有龙猪的概率将从原本8%提升至12%，如果该次还没有寻访到稀有龙猪，则下一次寻访获得稀有龙猪的概率由12%提升到16%。依此类推，每次提高4%获得稀有龙猪的概率，直至达到100%时必定获得稀有龙猪。
+◆在任意两个不同的【魔趣龙猪寻访】中，没有获得稀有龙猪的累计次数不会累计，该次数会因为【魔趣龙猪寻访】的结束而清零。因为累计次数而增加的获得概率，不会应用于接下来任意一次【魔趣龙猪寻访】。
+◆【魔趣龙猪寻访】中，没有获得稀有龙猪的抽取次数不会累计/应用到其他任意寻访，与其他任意寻访的已有累计次数互不影响。
+◆ 语音素材来自 MineCraft
+    -->
+</body>
+
+</html>
